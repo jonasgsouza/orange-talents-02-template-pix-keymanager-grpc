@@ -5,20 +5,10 @@ option java_package = "br.com.zup.edu";
 option java_outer_classname = "KeyManagerGrpc";
 option objc_class_prefix = "HLW";
 
-package br.com.zup.edu.pix;
+package br.com.zup.edu;
 
 service KeyManagerGrpcService {
-  rpc send (KeyManagerGrpcRequest) returns (KeyManagerGrpcReply) {}
-
-  rpc registerKey(RegisterKeyRequest) returns (RegisterKeyResponse) {}
-}
-
-message KeyManagerGrpcRequest {
-  string name = 1;
-}
-
-message KeyManagerGrpcReply {
-  string message = 1;
+  rpc registerKey(RegisterPixKeyRequest) returns (RegisterPixKeyResponse) {}
 }
 
 enum KeyType {
@@ -33,13 +23,13 @@ enum AccountType {
   POUPANCA = 1;
 }
 
-message RegisterKeyRequest {
+message RegisterPixKeyRequest {
   string clientId = 1;
   KeyType keyType = 2;
   string keyValue = 3;
   AccountType accountType = 4;
 }
 
-message  RegisterKeyResponse {
+message  RegisterPixKeyResponse {
   string pixId = 1;
 }
