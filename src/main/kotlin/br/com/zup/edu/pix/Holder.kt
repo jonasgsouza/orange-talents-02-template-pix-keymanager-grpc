@@ -1,8 +1,7 @@
 package br.com.zup.edu.pix
 
 import br.com.zup.edu.pix.registry.service.request.OwnerRequest
-import br.com.zup.edu.pix.registry.service.request.OwnerType
-import java.lang.IllegalArgumentException
+import br.com.zup.edu.pix.registry.service.request.OwnerRequest.OwnerType
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType

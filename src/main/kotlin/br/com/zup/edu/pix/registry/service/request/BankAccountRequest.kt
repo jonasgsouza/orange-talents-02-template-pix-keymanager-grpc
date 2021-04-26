@@ -7,5 +7,9 @@ data class BankAccountRequest(
     val participant: String,
     val branch: String,
     val accountNumber: String,
-    val accountType: CreatePixKeyAccountType
-)
+    val accountType: BankAccountType
+) {
+    enum class BankAccountType {
+        CACC, SVGS
+    }
+}

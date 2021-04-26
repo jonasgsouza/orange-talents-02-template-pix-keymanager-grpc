@@ -32,7 +32,7 @@ class PixKey(
 
     fun toCreatePixKeyRequest(): CreatePixKeyRequest {
         return CreatePixKeyRequest(
-            keyType = type.createPixKeyType,
+            keyType = type.bcbPixKeyType,
             key = value,
             bankAccount = account.toBankAccountRequest(),
             owner = account.holder.toOwnerRequest()

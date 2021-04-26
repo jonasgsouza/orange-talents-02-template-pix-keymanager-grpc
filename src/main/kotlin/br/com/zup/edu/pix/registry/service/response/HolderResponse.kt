@@ -6,7 +6,7 @@ import io.micronaut.core.annotation.Introspected
 import java.util.*
 
 @Introspected
-data class HolderQueryResponse(
+data class HolderResponse(
     val id: UUID,
     @param:JsonProperty("nome") val name: String,
     @param:JsonProperty("cpf") val document: String
