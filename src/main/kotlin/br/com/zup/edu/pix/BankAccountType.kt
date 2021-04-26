@@ -1,7 +1,8 @@
 package br.com.zup.edu.pix
 
-enum class BankAccountType {
-    CONTA_CORRENTE,
-    CONTA_POUPANCA,
-    UNKNOWN
+import br.com.zup.edu.pix.registry.service.request.CreatePixKeyAccountType
+
+enum class BankAccountType(val createPixKeyAccountType: CreatePixKeyAccountType) {
+    CONTA_CORRENTE(CreatePixKeyAccountType.CACC),
+    CONTA_POUPANCA(CreatePixKeyAccountType.SVGS)
 }

@@ -13,9 +13,10 @@ service KeyManagerGrpcService {
 
 enum GrpcKeyType {
   CPF = 0;
-  PHONE = 1;
-  EMAIL = 2;
-  RANDOM_KEY = 3;
+  CNPJ = 1;
+  PHONE = 2;
+  EMAIL = 3;
+  RANDOM = 4;
 }
 
 enum GrpcAccountType {

@@ -1,5 +1,7 @@
 package br.com.zup.edu.pix
 
+import br.com.zup.edu.pix.registry.service.request.CreatePixKeyRequest
+import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.NotBlank
@@ -25,4 +27,15 @@ class PixKey(
     val id: Long? = null
 
     val uuid: UUID = UUID.randomUUID()
+
+    val createdAt: LocalDateTime = LocalDateTime.now()
+
+    fun toCreatePixKeyRequest(): CreatePixKeyRequest {
+        return CreatePixKeyRequest(
+            keyType = type.createPixKeyType,
+            key = value,
+            bankAccount = account.toBankAccountRequest(),
+            owner = account.holder.toOwnerRequest()
+        )
+    }
 }

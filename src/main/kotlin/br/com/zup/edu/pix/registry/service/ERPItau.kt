@@ -6,7 +6,6 @@ import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.PathVariable
 import io.micronaut.http.annotation.QueryValue
 import io.micronaut.http.client.annotation.Client
-import io.reactivex.Maybe
 
 @Client("http://localhost:9091/api/v1/clientes")
 interface ERPItau {
@@ -15,5 +14,5 @@ interface ERPItau {
     fun findBankAccount(
         @PathVariable clientId: String,
         @QueryValue("tipo") accountType: BankAccountType
-    ): Maybe<BankAccountQueryResponse>
+    ): BankAccountQueryResponse
 }

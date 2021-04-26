@@ -7,14 +7,16 @@ import br.com.zup.edu.pix.BankAccount
 import br.com.zup.edu.pix.BankAccountType
 import br.com.zup.edu.pix.PixKey
 import br.com.zup.edu.pix.PixKeyType
+import java.lang.IllegalArgumentException
 
 fun GrpcKeyType.toPixKeyType(): PixKeyType {
     return when(this) {
         GrpcKeyType.CPF -> PixKeyType.CPF
+        GrpcKeyType.CNPJ -> PixKeyType.CNPJ
         GrpcKeyType.EMAIL -> PixKeyType.EMAIL
         GrpcKeyType.PHONE -> PixKeyType.PHONE
-        GrpcKeyType.RANDOM_KEY -> PixKeyType.RANDOM_KEY
-        else -> PixKeyType.UNKNOWN
+        GrpcKeyType.RANDOM -> PixKeyType.RANDOM
+        GrpcKeyType.UNRECOGNIZED -> throw IllegalArgumentException("Tipo da chave pix inválido")
     }
 }
 
@@ -22,7 +24,7 @@ fun GrpcAccountType.toBankAccountType(): BankAccountType {
     return when(this) {
         GrpcAccountType.CONTA_CORRENTE -> BankAccountType.CONTA_CORRENTE
         GrpcAccountType.CONTA_POUPANCA -> BankAccountType.CONTA_POUPANCA
-        else -> BankAccountType.UNKNOWN
+        GrpcAccountType.UNRECOGNIZED -> throw IllegalArgumentException("Tipo da conta inválido")
     }
 }
 
