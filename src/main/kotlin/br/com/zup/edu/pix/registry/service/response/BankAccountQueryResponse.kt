@@ -6,7 +6,7 @@ import io.micronaut.core.annotation.Introspected
 
 @Introspected
 data class BankAccountQueryResponse(
-    @param:JsonProperty("tipo") val type: BankAccountType,
+    @param:JsonProperty("tipo") val bankAccountType: BankAccountType,
     @param:JsonProperty("agencia") val agency: String,
     @param:JsonProperty("numero") val number: String,
     @param:JsonProperty("instituicao") val institution: InstitutionResponse,
@@ -14,7 +14,7 @@ data class BankAccountQueryResponse(
 ) {
     fun toModel(): BankAccount {
         return BankAccount(
-            type = type.bankAccountType,
+            bankAccountType = bankAccountType.bankAccountType,
             ispb = institution.ispb,
             agency = agency,
             number = number,
@@ -23,9 +23,9 @@ data class BankAccountQueryResponse(
     }
 
     enum class BankAccountType(
-        val bankAccountType: br.com.zup.edu.pix.BankAccountType
+        val bankAccountType: BankAccount.BankAccountType
     ) {
-        CONTA_CORRENTE(br.com.zup.edu.pix.BankAccountType.CONTA_CORRENTE),
-        CONTA_POUPANCA(br.com.zup.edu.pix.BankAccountType.CONTA_POUPANCA);
+        CONTA_CORRENTE(BankAccount.BankAccountType.CONTA_CORRENTE),
+        CONTA_POUPANCA(BankAccount.BankAccountType.CONTA_POUPANCA);
     }
 }

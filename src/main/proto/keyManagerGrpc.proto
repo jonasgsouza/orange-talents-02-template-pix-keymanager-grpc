@@ -26,8 +26,8 @@ enum GrpcAccountType {
 
 message GrpcRegisterPixKeyRequest {
   string clientId = 1;
-  GrpcKeyType type = 2;
-  string value = 3;
+  GrpcKeyType keyType = 2;
+  string keyValue = 3;
   GrpcAccountType accountType = 4;
 }
 

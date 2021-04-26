@@ -14,10 +14,10 @@ class PixKey(
 
     @field:NotNull
     @field:Enumerated(EnumType.STRING)
-    val type: PixKeyType,
+    val keyType: PixKeyType,
 
     @field:NotBlank
-    val value: String,
+    val keyValue: String,
 
     @field:ManyToOne(cascade = [CascadeType.MERGE, CascadeType.PERSIST])
     val account: BankAccount
@@ -32,10 +32,18 @@ class PixKey(
 
     fun toCreatePixKeyRequest(): CreatePixKeyRequest {
         return CreatePixKeyRequest(
-            keyType = type.bcbPixKeyType,
-            key = value,
+            keyType = keyType.bcbPixKeyType,
+            key = keyValue,
             bankAccount = account.toBankAccountRequest(),
             owner = account.holder.toOwnerRequest()
         )
+    }
+
+    enum class PixKeyType(val bcbPixKeyType: CreatePixKeyRequest.PixKeyType) {
+        CPF(CreatePixKeyRequest.PixKeyType.CPF),
+        CNPJ(CreatePixKeyRequest.PixKeyType.CNPJ),
+        PHONE(CreatePixKeyRequest.PixKeyType.PHONE),
+        EMAIL(CreatePixKeyRequest.PixKeyType.EMAIL),
+        RANDOM(CreatePixKeyRequest.PixKeyType.RANDOM)
     }
 }

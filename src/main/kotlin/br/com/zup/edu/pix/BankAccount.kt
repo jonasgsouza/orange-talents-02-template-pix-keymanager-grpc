@@ -6,15 +6,16 @@ import javax.persistence.*
 @Entity
 class BankAccount(
     @field:Enumerated(EnumType.STRING)
-    val type: BankAccountType,
+    val bankAccountType: BankAccountType,
 
     val ispb: String,
+
     val agency: String,
+
     val number: String,
 
     @field:ManyToOne(cascade = [CascadeType.MERGE, CascadeType.PERSIST])
     val holder: Holder,
-
     ) {
 
     @Id
@@ -26,7 +27,12 @@ class BankAccount(
             participant = ispb,
             branch = agency,
             accountNumber = number,
-            accountType = type.createPixKeyAccountType
+            accountType = bankAccountType.bankAccountRequestType
         )
+    }
+
+    enum class BankAccountType(val bankAccountRequestType: BankAccountRequest.BankAccountType) {
+        CONTA_CORRENTE(BankAccountRequest.BankAccountType.CACC),
+        CONTA_POUPANCA(BankAccountRequest.BankAccountType.SVGS)
     }
 }

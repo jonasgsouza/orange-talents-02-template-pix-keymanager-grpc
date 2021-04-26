@@ -1,7 +1,6 @@
 package br.com.zup.edu.pix
 
 import br.com.zup.edu.pix.registry.service.request.OwnerRequest
-import br.com.zup.edu.pix.registry.service.request.OwnerRequest.OwnerType
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -24,10 +23,10 @@ class Holder(
         )
     }
 
-    private fun getOwnerType(): OwnerType {
+    private fun getOwnerType(): OwnerRequest.OwnerType {
         return when (document.length) {
-            11 -> OwnerType.NATURAL_PERSON
-            14 -> OwnerType.LEGAL_PERSON
+            11 -> OwnerRequest.OwnerType.NATURAL_PERSON
+            14 -> OwnerRequest.OwnerType.LEGAL_PERSON
             else -> throw IllegalArgumentException("O documento do titular possui tamanho inválido")
         }
     }
