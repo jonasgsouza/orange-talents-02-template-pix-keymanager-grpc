@@ -4,6 +4,7 @@ import br.com.zup.edu.pix.registry.service.request.OwnerRequest
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
+import javax.persistence.GenerationType.IDENTITY
 import javax.persistence.Id
 
 @Entity
@@ -12,7 +13,7 @@ class Holder(
     val document: String
 ) {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     val id: Long? = null
 
     fun toOwnerRequest(): OwnerRequest {

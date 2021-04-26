@@ -14,7 +14,7 @@ fun GrpcKeyType.toPixKeyType(): PixKey.PixKeyType {
         GrpcKeyType.EMAIL -> PixKey.PixKeyType.EMAIL
         GrpcKeyType.PHONE -> PixKey.PixKeyType.PHONE
         GrpcKeyType.RANDOM -> PixKey.PixKeyType.RANDOM
-        GrpcKeyType.UNRECOGNIZED -> throw IllegalArgumentException("Tipo da chave pix inválido")
+        GrpcKeyType.UNRECOGNIZED -> throw IllegalArgumentException("Invalid keyType")
     }
 }
 
@@ -22,7 +22,7 @@ fun GrpcAccountType.toBankAccountType(): BankAccount.BankAccountType {
     return when(this) {
         GrpcAccountType.CONTA_CORRENTE -> BankAccount.BankAccountType.CONTA_CORRENTE
         GrpcAccountType.CONTA_POUPANCA -> BankAccount.BankAccountType.CONTA_POUPANCA
-        GrpcAccountType.UNRECOGNIZED -> throw IllegalArgumentException("Tipo da conta inválido")
+        GrpcAccountType.UNRECOGNIZED -> throw IllegalArgumentException("Invalid accountType")
     }
 }
 

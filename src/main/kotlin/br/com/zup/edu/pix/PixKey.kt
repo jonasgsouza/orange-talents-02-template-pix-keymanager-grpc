@@ -4,6 +4,10 @@ import br.com.zup.edu.pix.registry.service.request.CreatePixKeyRequest
 import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
+import javax.persistence.CascadeType.MERGE
+import javax.persistence.CascadeType.PERSIST
+import javax.persistence.EnumType.STRING
+import javax.persistence.GenerationType.IDENTITY
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
@@ -13,17 +17,17 @@ class PixKey(
     val clientId: String,
 
     @field:NotNull
-    @field:Enumerated(EnumType.STRING)
+    @field:Enumerated(STRING)
     val keyType: PixKeyType,
 
     @field:NotBlank
     val keyValue: String,
 
-    @field:ManyToOne(cascade = [CascadeType.MERGE, CascadeType.PERSIST])
+    @field:ManyToOne(cascade = [MERGE, PERSIST])
     val account: BankAccount
 ) {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     val id: Long? = null
 
     val uuid: UUID = UUID.randomUUID()

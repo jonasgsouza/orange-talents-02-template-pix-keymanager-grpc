@@ -14,5 +14,5 @@ interface ERPItau {
     fun findBankAccount(
         @PathVariable clientId: String,
         @QueryValue("tipo") accountType: BankAccount.BankAccountType
-    ): BankAccountQueryResponse
+    ): BankAccountQueryResponse?
 }

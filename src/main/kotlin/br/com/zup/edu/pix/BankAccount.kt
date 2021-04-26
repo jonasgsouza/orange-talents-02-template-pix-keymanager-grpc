@@ -2,10 +2,14 @@ package br.com.zup.edu.pix
 
 import br.com.zup.edu.pix.registry.service.request.BankAccountRequest
 import javax.persistence.*
+import javax.persistence.CascadeType.MERGE
+import javax.persistence.CascadeType.PERSIST
+import javax.persistence.EnumType.STRING
+import javax.persistence.GenerationType.IDENTITY
 
 @Entity
 class BankAccount(
-    @field:Enumerated(EnumType.STRING)
+    @field:Enumerated(STRING)
     val bankAccountType: BankAccountType,
 
     val ispb: String,
@@ -14,12 +18,12 @@ class BankAccount(
 
     val number: String,
 
-    @field:ManyToOne(cascade = [CascadeType.MERGE, CascadeType.PERSIST])
+    @field:ManyToOne(cascade = [MERGE, PERSIST])
     val holder: Holder,
     ) {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     val id: Long? = null;
 
     fun toBankAccountRequest(): BankAccountRequest {
