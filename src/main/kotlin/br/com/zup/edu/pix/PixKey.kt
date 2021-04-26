@@ -1,6 +1,7 @@
 package br.com.zup.edu.pix
 
 import br.com.zup.edu.pix.registry.service.request.CreatePixKeyRequest
+import br.com.zup.edu.shared.validation.ValidPixKey
 import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
@@ -12,16 +13,18 @@ import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
 @Entity
+@ValidPixKey
 class PixKey(
     @field:NotBlank
     val clientId: String,
 
     @field:NotNull
     @field:Enumerated(STRING)
+    @Column(unique = true, nullable = false)
     val keyType: PixKeyType,
 
     @field:NotBlank
-    val keyValue: String,
+    val keyValue: String?,
 
     @field:ManyToOne(cascade = [MERGE, PERSIST])
     val account: BankAccount

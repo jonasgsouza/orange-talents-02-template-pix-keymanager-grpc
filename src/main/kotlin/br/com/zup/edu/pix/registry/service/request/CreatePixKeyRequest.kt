@@ -5,7 +5,7 @@ import io.micronaut.core.annotation.Introspected
 @Introspected
 data class CreatePixKeyRequest(
     val keyType: PixKeyType,
-    val key: String,
+    val key: String?,
     val bankAccount: BankAccountRequest,
     val owner: OwnerRequest
 ) {
