@@ -4,9 +4,6 @@ enum class PixKeyType {
     CPF,
     PHONE,
     EMAIL,
-    RANDOM_KEY;
-
-    fun from() {
-
-    }
+    RANDOM_KEY,
+    UNKNOWN
 }

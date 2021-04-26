@@ -1,6 +1,5 @@
 package br.com.zup.edu.pix
 
-import br.com.zup.edu.RegisterPixKeyRequest
 import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.NotBlank
@@ -13,29 +12,17 @@ class PixKey(
 
     @field:NotNull
     @field:Enumerated(EnumType.STRING)
-    val keyType: PixKeyType,
+    val type: PixKeyType,
 
     @field:NotBlank
-    val keyValue: String,
+    val value: String,
 
-    @field:NotBlank
-    val accountType: String
+    @field:ManyToOne(cascade = [CascadeType.MERGE, CascadeType.PERSIST])
+    val account: BankAccount
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null
 
     val uuid: UUID = UUID.randomUUID()
-
-    companion object {
-        fun from(request: RegisterPixKeyRequest): PixKey {
-            return PixKey(
-                clientId = request.clientId,
-                keyType = PixKeyType.RANDOM_KEY,
-                keyValue = request.keyValue,
-                accountType = request.accountType.name
-            )
-        }
-    }
-
 }

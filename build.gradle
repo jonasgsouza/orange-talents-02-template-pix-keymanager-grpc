@@ -16,7 +16,6 @@ repositories {
 }
 
 micronaut {
-    runtime "netty"
     testRuntime("junit5")
     processing {
         incremental(true)
@@ -38,7 +37,7 @@ dependencies {
     implementation("io.micronaut:micronaut-http-client")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
-    runtimeOnly("com.h2database:h2")
+    runtimeOnly("org.postgresql:postgresql")
 }
 
 

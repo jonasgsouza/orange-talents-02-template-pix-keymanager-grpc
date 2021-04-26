@@ -8,28 +8,28 @@ option objc_class_prefix = "HLW";
 package br.com.zup.edu;
 
 service KeyManagerGrpcService {
-  rpc registerKey(RegisterPixKeyRequest) returns (RegisterPixKeyResponse) {}
+  rpc registerKey(GrpcRegisterPixKeyRequest) returns (GrpcRegisterPixKeyResponse) {}
 }
 
-enum KeyType {
+enum GrpcKeyType {
   CPF = 0;
   PHONE = 1;
   EMAIL = 2;
   RANDOM_KEY = 3;
 }
 
-enum AccountType {
-  CORRENTE = 0;
-  POUPANCA = 1;
+enum GrpcAccountType {
+  CONTA_CORRENTE = 0;
+  CONTA_POUPANCA = 1;
 }
 
-message RegisterPixKeyRequest {
+message GrpcRegisterPixKeyRequest {
   string clientId = 1;
-  KeyType keyType = 2;
-  string keyValue = 3;
-  AccountType accountType = 4;
+  GrpcKeyType type = 2;
+  string value = 3;
+  GrpcAccountType accountType = 4;
 }
 
-message  RegisterPixKeyResponse {
+message  GrpcRegisterPixKeyResponse {
   string pixId = 1;
 }
