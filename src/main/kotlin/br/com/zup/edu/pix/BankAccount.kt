@@ -1,6 +1,6 @@
 package br.com.zup.edu.pix
 
-import br.com.zup.edu.pix.registry.service.request.BankAccountRequest
+import br.com.zup.integration.request.BankAccountRequest
 import javax.persistence.*
 import javax.persistence.CascadeType.MERGE
 import javax.persistence.CascadeType.PERSIST

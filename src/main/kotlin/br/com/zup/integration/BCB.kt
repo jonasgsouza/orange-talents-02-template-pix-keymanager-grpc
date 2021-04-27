@@ -1,6 +1,6 @@
-package br.com.zup.edu.pix.registry.service
+package br.com.zup.integration
 
-import br.com.zup.edu.pix.registry.service.request.CreatePixKeyRequest
+import br.com.zup.integration.request.CreatePixKeyRequest
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.MediaType.APPLICATION_XML
 import io.micronaut.http.annotation.Body

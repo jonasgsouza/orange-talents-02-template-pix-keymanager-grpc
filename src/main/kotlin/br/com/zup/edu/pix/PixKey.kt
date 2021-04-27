@@ -1,7 +1,6 @@
 package br.com.zup.edu.pix
 
-import br.com.zup.edu.pix.registry.service.request.CreatePixKeyRequest
-import br.com.zup.edu.shared.validation.ValidPixKey
+import br.com.zup.integration.request.CreatePixKeyRequest
 import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
@@ -13,7 +12,6 @@ import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
 @Entity
-@ValidPixKey
 class PixKey(
     @field:NotBlank
     val clientId: String,

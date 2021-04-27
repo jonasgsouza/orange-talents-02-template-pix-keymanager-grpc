@@ -2,6 +2,7 @@ package br.com.zup.edu.pix.registry.service.request
 
 import br.com.zup.edu.pix.BankAccount
 import br.com.zup.edu.pix.PixKey
+import br.com.zup.edu.shared.validation.ValidPixKey
 import br.com.zup.edu.shared.validation.ValidUUID
 import io.micronaut.core.annotation.Introspected
 import io.micronaut.validation.validator.constraints.EmailValidator
@@ -10,19 +11,18 @@ import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
 @Introspected
+@ValidPixKey
 data class RegisterPixKeyRequest(
     @field:NotBlank
     @field:ValidUUID
     val clientId: String,
 
     @field:NotNull
-    @Email
     val keyType: PixKey.PixKeyType,
 
     @field:NotNull
     val accountType: BankAccount.BankAccountType,
 
-    @field:NotBlank
     val keyValue: String?,
 ) {
     fun toModel(account: BankAccount): PixKey {

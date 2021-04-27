@@ -3,7 +3,9 @@ package br.com.zup.edu.pix.registry.service
 import br.com.zup.edu.pix.PixKey
 import br.com.zup.edu.pix.repository.PixKeyRepository
 import br.com.zup.edu.pix.registry.service.request.RegisterPixKeyRequest
-import br.com.zup.edu.pix.registry.service.response.BankAccountQueryResponse
+import br.com.zup.integration.BCB
+import br.com.zup.integration.ERPItau
+import br.com.zup.integration.response.BankAccountQueryResponse
 import io.micronaut.validation.Validated
 import javax.inject.Singleton
 import javax.transaction.Transactional
