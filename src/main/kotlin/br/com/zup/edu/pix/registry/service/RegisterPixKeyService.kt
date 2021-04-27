@@ -7,8 +7,6 @@ import br.com.zup.integration.BCB
 import br.com.zup.integration.ERPItau
 import br.com.zup.integration.response.BankAccountQueryResponse
 import io.micronaut.validation.Validated
-import java.lang.IllegalArgumentException
-import java.lang.IllegalStateException
 import javax.inject.Singleton
 import javax.transaction.Transactional
 import javax.validation.Valid
