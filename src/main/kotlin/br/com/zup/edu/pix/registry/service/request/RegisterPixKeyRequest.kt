@@ -1,4 +1,4 @@
-package br.com.zup.edu.pix.registry
+package br.com.zup.edu.pix.registry.service.request
 
 import br.com.zup.edu.pix.BankAccount
 import br.com.zup.edu.pix.PixKey

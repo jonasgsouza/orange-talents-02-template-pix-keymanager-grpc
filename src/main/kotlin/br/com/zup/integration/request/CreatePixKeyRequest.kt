@@ -1,4 +1,4 @@
-package br.com.zup.edu.pix.registry.service.request
+package br.com.zup.integration.request
 
 import io.micronaut.core.annotation.Introspected
 

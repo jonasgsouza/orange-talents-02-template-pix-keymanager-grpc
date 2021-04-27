@@ -1,7 +1,7 @@
-package br.com.zup.edu.pix.registry.service
+package br.com.zup.integration
 
 import br.com.zup.edu.pix.BankAccount
-import br.com.zup.edu.pix.registry.service.response.BankAccountQueryResponse
+import br.com.zup.integration.response.BankAccountQueryResponse
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.PathVariable
 import io.micronaut.http.annotation.QueryValue

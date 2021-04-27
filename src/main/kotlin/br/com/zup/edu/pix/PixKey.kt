@@ -1,6 +1,6 @@
 package br.com.zup.edu.pix
 
-import br.com.zup.edu.pix.registry.service.request.CreatePixKeyRequest
+import br.com.zup.integration.request.CreatePixKeyRequest
 import br.com.zup.edu.shared.validation.ValidPixKey
 import java.time.LocalDateTime
 import java.util.*
