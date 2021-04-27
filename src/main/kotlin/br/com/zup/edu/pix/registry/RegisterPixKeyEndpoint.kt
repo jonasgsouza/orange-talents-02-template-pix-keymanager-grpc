@@ -4,6 +4,8 @@ import br.com.zup.edu.GrpcRegisterPixKeyRequest
 import br.com.zup.edu.GrpcRegisterPixKeyResponse
 import br.com.zup.edu.KeyManagerGrpcServiceGrpc
 import br.com.zup.edu.pix.PixKey
+import br.com.zup.edu.pix.registry.service.RegisterPixKeyService
+import br.com.zup.edu.pix.registry.service.toRegisterPixKeyRequest
 import io.grpc.stub.StreamObserver
 import javax.inject.Singleton
 

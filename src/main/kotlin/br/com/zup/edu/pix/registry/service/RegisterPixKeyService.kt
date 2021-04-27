@@ -1,13 +1,10 @@
-package br.com.zup.edu.pix.registry
+package br.com.zup.edu.pix.registry.service
 
 import br.com.zup.edu.pix.PixKey
-import br.com.zup.edu.pix.PixKeyRepository
-import br.com.zup.edu.pix.registry.service.BCB
-import br.com.zup.edu.pix.registry.service.ERPItau
+import br.com.zup.edu.pix.repository.PixKeyRepository
+import br.com.zup.edu.pix.registry.service.request.RegisterPixKeyRequest
 import br.com.zup.edu.pix.registry.service.response.BankAccountQueryResponse
 import io.micronaut.validation.Validated
-import java.lang.IllegalArgumentException
-import java.lang.IllegalStateException
 import javax.inject.Singleton
 import javax.transaction.Transactional
 import javax.validation.Valid

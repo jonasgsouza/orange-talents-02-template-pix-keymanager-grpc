@@ -1,10 +1,11 @@
-package br.com.zup.edu.pix.registry
+package br.com.zup.edu.pix.registry.service
 
 import br.com.zup.edu.GrpcAccountType
 import br.com.zup.edu.GrpcKeyType
 import br.com.zup.edu.GrpcRegisterPixKeyRequest
 import br.com.zup.edu.pix.BankAccount
 import br.com.zup.edu.pix.PixKey
+import br.com.zup.edu.pix.registry.service.request.RegisterPixKeyRequest
 import java.lang.IllegalArgumentException
 
 fun GrpcKeyType.toPixKeyType(): PixKey.PixKeyType {
