@@ -7,7 +7,7 @@ import javax.persistence.CascadeType.PERSIST
 import javax.persistence.EnumType.STRING
 import javax.persistence.GenerationType.IDENTITY
 
-@Entity
+@Embeddable
 class BankAccount(
     @field:Enumerated(STRING)
     val bankAccountType: BankAccountType,
@@ -18,13 +18,14 @@ class BankAccount(
 
     val number: String,
 
-    @field:ManyToOne(cascade = [MERGE, PERSIST])
+//    @field:ManyToOne(cascade = [MERGE, PERSIST])
+    @field:Embedded
     val holder: Holder,
     ) {
 
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    val id: Long? = null;
+//    @Id
+//    @GeneratedValue(strategy = IDENTITY)
+//    val id: Long? = null;
 
     fun toBankAccountRequest(): BankAccountRequest {
         return BankAccountRequest(

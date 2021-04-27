@@ -24,7 +24,8 @@ class PixKey(
     @field:NotBlank
     val keyValue: String?,
 
-    @field:ManyToOne(cascade = [MERGE, PERSIST])
+//    @field:ManyToOne(cascade = [MERGE, PERSIST])
+    @field:Embedded
     val account: BankAccount
 ) {
     @Id

@@ -6,6 +6,7 @@ import br.com.zup.edu.shared.validation.ValidPixKey
 import br.com.zup.edu.shared.validation.ValidUUID
 import io.micronaut.core.annotation.Introspected
 import io.micronaut.validation.validator.constraints.EmailValidator
+import java.util.*
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
@@ -28,7 +29,7 @@ data class RegisterPixKeyRequest(
         return PixKey(
             clientId = clientId,
             keyType = keyType,
-            keyValue = keyValue,
+            keyValue = if(keyType == PixKey.PixKeyType.RANDOM) UUID.randomUUID().toString() else keyValue,
             account = account
         )
     }

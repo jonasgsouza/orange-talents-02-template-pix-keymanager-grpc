@@ -1,19 +1,20 @@
 package br.com.zup.edu.pix
 
 import br.com.zup.integration.request.OwnerRequest
+import javax.persistence.Embeddable
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType.IDENTITY
 import javax.persistence.Id
 
-@Entity
+@Embeddable
 class Holder(
     val name: String,
     val document: String
 ) {
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    val id: Long? = null
+//    @Id
+//    @GeneratedValue(strategy = IDENTITY)
+//    val id: Long? = null
 
     fun toOwnerRequest(): OwnerRequest {
         return OwnerRequest(

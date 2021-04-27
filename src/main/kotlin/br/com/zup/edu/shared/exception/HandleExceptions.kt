@@ -1,4 +1,4 @@
-package br.com.zup.edu.shared.interceptor
+package br.com.zup.edu.shared.exception
 
 import io.micronaut.aop.Around
 import io.micronaut.context.annotation.Type

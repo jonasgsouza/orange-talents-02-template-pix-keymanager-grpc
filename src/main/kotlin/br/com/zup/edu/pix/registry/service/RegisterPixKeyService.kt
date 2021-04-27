@@ -1,8 +1,9 @@
 package br.com.zup.edu.pix.registry.service
 
 import br.com.zup.edu.pix.PixKey
-import br.com.zup.edu.pix.repository.PixKeyRepository
 import br.com.zup.edu.pix.registry.service.request.RegisterPixKeyRequest
+import br.com.zup.edu.pix.repository.PixKeyRepository
+import br.com.zup.edu.pix.registry.exception.PixKeyAlreadyExistsException
 import br.com.zup.integration.BCB
 import br.com.zup.integration.ERPItau
 import br.com.zup.integration.response.BankAccountQueryResponse
@@ -21,8 +22,10 @@ class RegisterPixKeyService(
 
     @Transactional
     fun registerKey(@Valid request: RegisterPixKeyRequest): PixKey {
-        if(keyRepository.existsByKeyValue(request.keyValue)) throw IllegalArgumentException("Pix Key already exists")
-        val bankAccountResponse: BankAccountQueryResponse = erpItau.findBankAccount(request.clientId, request.accountType) ?: throw IllegalStateException("Client not found")
+        if (keyRepository.existsByKeyValue(request.keyValue)) throw PixKeyAlreadyExistsException()
+        val bankAccountResponse: BankAccountQueryResponse =
+            erpItau.findBankAccount(request.clientId, request.accountType)
+                ?: throw IllegalStateException("Client not found")
         val pixKey = request.toModel(bankAccountResponse.toModel())
         keyRepository.save(pixKey)
         bcb.createPixKey(pixKey.toCreatePixKeyRequest())
