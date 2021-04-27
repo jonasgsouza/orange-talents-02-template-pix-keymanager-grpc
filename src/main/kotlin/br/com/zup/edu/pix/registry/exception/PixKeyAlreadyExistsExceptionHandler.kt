@@ -1,6 +1,6 @@
 package br.com.zup.edu.pix.registry.exception
 
-import br.com.zup.edu.shared.exception.ExceptionHandler
+import br.com.zup.shared.exception.ExceptionHandler
 import io.grpc.Status
 import javax.inject.Singleton
 

@@ -1,4 +1,4 @@
-package br.com.zup.edu.shared.validation
+package br.com.zup.shared.validation
 
 import javax.validation.Constraint
 import javax.validation.Payload
