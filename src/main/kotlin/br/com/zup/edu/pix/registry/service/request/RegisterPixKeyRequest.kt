@@ -2,8 +2,8 @@ package br.com.zup.edu.pix.registry.service.request
 
 import br.com.zup.edu.pix.BankAccount
 import br.com.zup.edu.pix.PixKey
-import br.com.zup.edu.shared.validation.ValidPixKey
-import br.com.zup.edu.shared.validation.ValidUUID
+import br.com.zup.shared.validation.ValidPixKey
+import br.com.zup.shared.validation.ValidUUID
 import io.micronaut.core.annotation.Introspected
 import io.micronaut.validation.validator.constraints.EmailValidator
 import java.util.*

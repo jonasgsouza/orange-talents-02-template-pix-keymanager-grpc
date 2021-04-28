@@ -1,5 +1,6 @@
-package br.com.zup.edu.shared.exception
+package br.com.zup.shared.exception
 
+import br.com.zup.shared.exception.ExceptionInterceptor
 import io.micronaut.aop.Around
 import io.micronaut.context.annotation.Type
 import kotlin.annotation.AnnotationRetention.RUNTIME
