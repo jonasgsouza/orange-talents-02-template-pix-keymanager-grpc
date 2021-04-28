@@ -8,14 +8,18 @@ option objc_class_prefix = "HLW";
 package br.com.zup.edu;
 
 service RegisterPixKeyService {
-  rpc registerKey(GrpcRegisterPixKeyRequest) returns (GrpcRegisterPixKeyResponse) {}
+  rpc registerKey(RegisterPixKeyRequestGrpc) returns (RegisterPixKeyResponseGrpc) {}
 }
 
 service RemovePixKeyService {
-  rpc removeKey(GrpcRemovePixKeyRequest) returns (GrpcRemovePixKeyResponse) {}
+  rpc removeKey(RemovePixKeyRequestGrpc) returns (RemovePixKeyResponseGrpc) {}
 }
 
-enum GrpcKeyType {
+service FindPixKeyService {
+  rpc findKey(FindPixKeyRequestGrpc) returns (FindPixKeyResponseGrpc) {}
+}
+
+enum KeyTypeGrpc {
   CPF = 0;
   CNPJ = 1;
   PHONE = 2;
@@ -23,27 +27,36 @@ enum GrpcKeyType {
   RANDOM = 4;
 }
 
-enum GrpcAccountType {
+enum AccountTypeGrpc {
   CONTA_CORRENTE = 0;
   CONTA_POUPANCA = 1;
 }
 
-message GrpcRegisterPixKeyRequest {
+message RegisterPixKeyRequestGrpc {
   string clientId = 1;
-  GrpcKeyType keyType = 2;
+  KeyTypeGrpc keyType = 2;
   string keyValue = 3;
-  GrpcAccountType accountType = 4;
+  AccountTypeGrpc accountType = 4;
 }
 
-message  GrpcRegisterPixKeyResponse {
+message  RegisterPixKeyResponseGrpc {
   string pixId = 1;
 }
 
-message GrpcRemovePixKeyRequest {
+message RemovePixKeyRequestGrpc {
   string clientId = 1;
   string pixId = 2;
 }
 
-message GrpcRemovePixKeyResponse {
+message RemovePixKeyResponseGrpc {
+
+}
+
+message FindPixKeyRequestGrpc {
+  string pixId = 1;
+
+}
+
+message FindPixKeyResponseGrpc{
 
 }

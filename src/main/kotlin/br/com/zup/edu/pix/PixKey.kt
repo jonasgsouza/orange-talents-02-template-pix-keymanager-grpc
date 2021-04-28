@@ -33,6 +33,7 @@ class PixKey(
     @GeneratedValue(strategy = IDENTITY)
     val id: Long? = null
 
+    @Column(unique = true, nullable = false)
     val uuid: UUID = UUID.randomUUID()
 
     val createdAt: LocalDateTime = LocalDateTime.now()

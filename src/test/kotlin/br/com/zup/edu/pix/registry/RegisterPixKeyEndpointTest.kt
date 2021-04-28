@@ -1,8 +1,9 @@
 package br.com.zup.edu.pix.registry
 
-import br.com.zup.edu.GrpcAccountType
-import br.com.zup.edu.GrpcKeyType
-import br.com.zup.edu.GrpcRegisterPixKeyRequest
+
+import br.com.zup.edu.AccountTypeGrpc
+import br.com.zup.edu.KeyTypeGrpc
+import br.com.zup.edu.RegisterPixKeyRequestGrpc
 import br.com.zup.edu.RegisterPixKeyServiceGrpc
 import br.com.zup.edu.integration.BCB
 import br.com.zup.edu.integration.ERPItau
@@ -89,11 +90,11 @@ internal class RegisterPixKeyEndpointTest(
             .thenReturn(Any())
 
         val response = grpcClient.registerKey(
-            GrpcRegisterPixKeyRequest.newBuilder()
+            RegisterPixKeyRequestGrpc.newBuilder()
                 .setClientId(clientId.toString())
-                .setKeyType(GrpcKeyType.CPF)
+                .setKeyType(KeyTypeGrpc.CPF)
                 .setKeyValue("12345678909")
-                .setAccountType(GrpcAccountType.CONTA_CORRENTE)
+                .setAccountType(AccountTypeGrpc.CONTA_CORRENTE)
                 .build()
         )
         with(response) {

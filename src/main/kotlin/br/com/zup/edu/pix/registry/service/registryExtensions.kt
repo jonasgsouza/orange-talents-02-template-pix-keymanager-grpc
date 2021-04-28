@@ -1,33 +1,32 @@
 package br.com.zup.edu.pix.registry.service
 
-import br.com.zup.edu.GrpcAccountType
-import br.com.zup.edu.GrpcKeyType
-import br.com.zup.edu.GrpcRegisterPixKeyRequest
+import br.com.zup.edu.AccountTypeGrpc
+import br.com.zup.edu.KeyTypeGrpc
+import br.com.zup.edu.RegisterPixKeyRequestGrpc
 import br.com.zup.edu.pix.BankAccount
 import br.com.zup.edu.pix.PixKey
 import br.com.zup.edu.pix.registry.service.request.RegisterPixKeyRequest
-import java.lang.IllegalArgumentException
 
-fun GrpcKeyType.toPixKeyType(): PixKey.PixKeyType {
-    return when(this) {
-        GrpcKeyType.CPF -> PixKey.PixKeyType.CPF
-        GrpcKeyType.CNPJ -> PixKey.PixKeyType.CNPJ
-        GrpcKeyType.EMAIL -> PixKey.PixKeyType.EMAIL
-        GrpcKeyType.PHONE -> PixKey.PixKeyType.PHONE
-        GrpcKeyType.RANDOM -> PixKey.PixKeyType.RANDOM
-        GrpcKeyType.UNRECOGNIZED -> throw IllegalArgumentException("Invalid keyType")
+fun KeyTypeGrpc.toPixKeyType(): PixKey.PixKeyType {
+    return when (this) {
+        KeyTypeGrpc.CPF -> PixKey.PixKeyType.CPF
+        KeyTypeGrpc.CNPJ -> PixKey.PixKeyType.CNPJ
+        KeyTypeGrpc.EMAIL -> PixKey.PixKeyType.EMAIL
+        KeyTypeGrpc.PHONE -> PixKey.PixKeyType.PHONE
+        KeyTypeGrpc.RANDOM -> PixKey.PixKeyType.RANDOM
+        KeyTypeGrpc.UNRECOGNIZED -> throw IllegalArgumentException("Invalid keyType")
     }
 }
 
-fun GrpcAccountType.toBankAccountType(): BankAccount.BankAccountType {
-    return when(this) {
-        GrpcAccountType.CONTA_CORRENTE -> BankAccount.BankAccountType.CONTA_CORRENTE
-        GrpcAccountType.CONTA_POUPANCA -> BankAccount.BankAccountType.CONTA_POUPANCA
-        GrpcAccountType.UNRECOGNIZED -> throw IllegalArgumentException("Invalid accountType")
+fun AccountTypeGrpc.toBankAccountType(): BankAccount.BankAccountType {
+    return when (this) {
+        AccountTypeGrpc.CONTA_CORRENTE -> BankAccount.BankAccountType.CONTA_CORRENTE
+        AccountTypeGrpc.CONTA_POUPANCA -> BankAccount.BankAccountType.CONTA_POUPANCA
+        AccountTypeGrpc.UNRECOGNIZED -> throw IllegalArgumentException("Invalid accountType")
     }
 }
 
-fun GrpcRegisterPixKeyRequest.toRegisterPixKeyRequest(): RegisterPixKeyRequest {
+fun RegisterPixKeyRequestGrpc.toRegisterPixKeyRequest(): RegisterPixKeyRequest {
     return RegisterPixKeyRequest(
         clientId = this.clientId,
         keyType = this.keyType.toPixKeyType(),
