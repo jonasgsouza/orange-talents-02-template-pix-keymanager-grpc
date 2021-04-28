@@ -9,5 +9,5 @@ import java.util.*
 interface PixKeyRepository : JpaRepository<PixKey, Long> {
     fun existsByKeyValue(keyValue: String?): Boolean
 
-    fun existsByUuid(uuid: UUID): Boolean
+    fun findByUuid(uuid: UUID): Optional<PixKey>
 }

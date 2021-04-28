@@ -1,4 +1,4 @@
-package br.com.zup.integration.request
+package br.com.zup.edu.integration.request
 
 import io.micronaut.core.annotation.Introspected
 

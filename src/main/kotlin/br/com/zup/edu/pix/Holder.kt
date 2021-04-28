@@ -1,11 +1,7 @@
 package br.com.zup.edu.pix
 
-import br.com.zup.integration.request.OwnerRequest
+import br.com.zup.edu.integration.request.OwnerRequest
 import javax.persistence.Embeddable
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType.IDENTITY
-import javax.persistence.Id
 
 @Embeddable
 class Holder(

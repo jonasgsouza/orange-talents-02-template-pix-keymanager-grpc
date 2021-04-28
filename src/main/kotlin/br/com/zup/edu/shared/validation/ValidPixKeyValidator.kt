@@ -1,4 +1,4 @@
-package br.com.zup.shared.validation
+package br.com.zup.edu.shared.validation
 
 import br.com.zup.edu.pix.registry.service.request.RegisterPixKeyRequest
 import io.micronaut.core.annotation.AnnotationValue

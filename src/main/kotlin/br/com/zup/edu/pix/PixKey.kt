@@ -1,11 +1,9 @@
 package br.com.zup.edu.pix
 
-import br.com.zup.integration.request.CreatePixKeyRequest
+import br.com.zup.edu.integration.request.CreatePixKeyRequest
 import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
-import javax.persistence.CascadeType.MERGE
-import javax.persistence.CascadeType.PERSIST
 import javax.persistence.EnumType.STRING
 import javax.persistence.GenerationType.IDENTITY
 import javax.validation.constraints.NotBlank
@@ -39,13 +37,8 @@ class PixKey(
 
     val createdAt: LocalDateTime = LocalDateTime.now()
 
-    fun toCreatePixKeyRequest(): CreatePixKeyRequest {
-        return CreatePixKeyRequest(
-            keyType = keyType.bcbPixKeyType,
-            key = keyValue,
-            bankAccount = account.toBankAccountRequest(),
-            owner = account.holder.toOwnerRequest()
-        )
+    fun belongsTo(clientId: UUID): Boolean {
+        return this.clientId == clientId
     }
 
     enum class PixKeyType(val bcbPixKeyType: CreatePixKeyRequest.PixKeyType) {

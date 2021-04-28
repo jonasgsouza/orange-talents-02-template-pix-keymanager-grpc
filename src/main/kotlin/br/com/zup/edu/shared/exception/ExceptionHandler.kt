@@ -1,4 +1,4 @@
-package br.com.zup.shared.exception
+package br.com.zup.edu.shared.exception
 
 import io.grpc.Status
 

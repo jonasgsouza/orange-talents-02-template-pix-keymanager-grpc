@@ -7,8 +7,12 @@ option objc_class_prefix = "HLW";
 
 package br.com.zup.edu;
 
-service KeyManagerGrpcService {
+service RegisterPixKeyService {
   rpc registerKey(GrpcRegisterPixKeyRequest) returns (GrpcRegisterPixKeyResponse) {}
+}
+
+service RemovePixKeyService {
+  rpc removeKey(GrpcRemovePixKeyRequest) returns (GrpcRemovePixKeyResponse) {}
 }
 
 enum GrpcKeyType {
@@ -33,4 +37,13 @@ message GrpcRegisterPixKeyRequest {
 
 message  GrpcRegisterPixKeyResponse {
   string pixId = 1;
+}
+
+message GrpcRemovePixKeyRequest {
+  string clientId = 1;
+  string pixId = 2;
+}
+
+message GrpcRemovePixKeyResponse {
+
 }

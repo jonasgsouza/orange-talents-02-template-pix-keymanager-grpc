@@ -1,11 +1,8 @@
 package br.com.zup.edu.pix
 
-import br.com.zup.integration.request.BankAccountRequest
+import br.com.zup.edu.integration.request.BankAccountRequest
 import javax.persistence.*
-import javax.persistence.CascadeType.MERGE
-import javax.persistence.CascadeType.PERSIST
 import javax.persistence.EnumType.STRING
-import javax.persistence.GenerationType.IDENTITY
 
 @Embeddable
 class BankAccount(

@@ -1,4 +1,4 @@
-package br.com.zup.integration.response
+package br.com.zup.edu.integration.response
 
 import br.com.zup.edu.pix.BankAccount
 import com.fasterxml.jackson.annotation.JsonProperty

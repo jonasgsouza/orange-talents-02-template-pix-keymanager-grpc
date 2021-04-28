@@ -3,38 +3,37 @@ package br.com.zup.edu.pix.registry
 import br.com.zup.edu.GrpcAccountType
 import br.com.zup.edu.GrpcKeyType
 import br.com.zup.edu.GrpcRegisterPixKeyRequest
-import br.com.zup.edu.KeyManagerGrpcServiceGrpc
+import br.com.zup.edu.RegisterPixKeyServiceGrpc
+import br.com.zup.edu.integration.BCB
+import br.com.zup.edu.integration.ERPItau
+import br.com.zup.edu.integration.request.BankAccountRequest
+import br.com.zup.edu.integration.request.CreatePixKeyRequest
+import br.com.zup.edu.integration.request.OwnerRequest
+import br.com.zup.edu.integration.response.BankAccountQueryResponse
+import br.com.zup.edu.integration.response.HolderResponse
+import br.com.zup.edu.integration.response.InstitutionResponse
 import br.com.zup.edu.pix.BankAccount
 import br.com.zup.edu.pix.repository.PixKeyRepository
-import br.com.zup.integration.BCB
-import br.com.zup.integration.ERPItau
-import br.com.zup.integration.request.BankAccountRequest
-import br.com.zup.integration.request.CreatePixKeyRequest
-import br.com.zup.integration.request.OwnerRequest
-import br.com.zup.integration.response.BankAccountQueryResponse
-import br.com.zup.integration.response.HolderResponse
-import br.com.zup.integration.response.InstitutionResponse
 import io.grpc.ManagedChannel
-import io.micronaut.context.annotation.Bean
 import io.micronaut.context.annotation.Factory
 import io.micronaut.grpc.annotation.GrpcChannel
 import io.micronaut.grpc.server.GrpcServerChannel
 import io.micronaut.test.annotation.MockBean
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
+import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import java.util.*
-import org.junit.jupiter.api.Assertions.*
-import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @MicronautTest(transactional = false)
 internal class RegisterPixKeyEndpointTest(
     val keyRepository: PixKeyRepository,
-    val grpcClient: KeyManagerGrpcServiceGrpc.KeyManagerGrpcServiceBlockingStub
+    val grpcClient: RegisterPixKeyServiceGrpc.RegisterPixKeyServiceBlockingStub
 ) {
 
     @Inject
@@ -99,7 +98,7 @@ internal class RegisterPixKeyEndpointTest(
         )
         with(response) {
             assertNotNull(pixId)
-            assertTrue(keyRepository.existsByUuid(UUID.fromString(pixId)))
+            assertTrue(keyRepository.findByUuid(UUID.fromString(pixId)).isPresent)
         }
     }
 
@@ -117,8 +116,8 @@ internal class RegisterPixKeyEndpointTest(
     class Client {
 
         @Singleton
-        fun grpcClient(@GrpcChannel(GrpcServerChannel.NAME) channel: ManagedChannel): KeyManagerGrpcServiceGrpc.KeyManagerGrpcServiceBlockingStub {
-            return KeyManagerGrpcServiceGrpc.newBlockingStub(channel)
+        fun grpcClient(@GrpcChannel(GrpcServerChannel.NAME) channel: ManagedChannel): RegisterPixKeyServiceGrpc.RegisterPixKeyServiceBlockingStub {
+            return RegisterPixKeyServiceGrpc.newBlockingStub(channel)
         }
     }
 }
