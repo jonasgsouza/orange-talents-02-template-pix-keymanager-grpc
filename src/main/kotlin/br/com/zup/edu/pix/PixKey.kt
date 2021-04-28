@@ -14,18 +14,21 @@ import javax.validation.constraints.NotNull
 @Entity
 class PixKey(
     @field:NotBlank
-    val clientId: String,
+    val clientId: UUID,
 
     @field:NotNull
-    @field:Enumerated(STRING)
-    @Column(unique = true, nullable = false)
+    @Enumerated(STRING)
+    @Column(nullable = false)
     val keyType: PixKeyType,
 
     @field:NotBlank
+    @Column(unique = true, nullable = false, length = 77)
     val keyValue: String?,
 
 //    @field:ManyToOne(cascade = [MERGE, PERSIST])
-    @field:Embedded
+    @field:NotNull
+    @Embedded
+    @Column(nullable = false)
     val account: BankAccount
 ) {
     @Id

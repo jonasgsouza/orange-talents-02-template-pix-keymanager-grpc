@@ -11,5 +11,5 @@ import io.micronaut.http.client.annotation.Client
 interface BCB {
 
     @Post(consumes = [APPLICATION_XML], produces = [APPLICATION_XML])
-    fun createPixKey(@Body createPixKeyRequest: CreatePixKeyRequest): HttpResponse<Any>
+    fun createPixKey(@Body createPixKeyRequest: CreatePixKeyRequest): Any?
 }

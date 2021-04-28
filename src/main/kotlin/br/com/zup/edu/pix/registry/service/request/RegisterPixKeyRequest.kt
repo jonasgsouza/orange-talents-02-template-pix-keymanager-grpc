@@ -9,33 +9,37 @@ import io.micronaut.validation.validator.constraints.EmailValidator
 import java.util.*
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
+import javax.validation.constraints.Size
 
 @Introspected
 @ValidPixKey
 data class RegisterPixKeyRequest(
     @field:NotBlank
     @field:ValidUUID
-    val clientId: String,
+    val clientId: String?,
 
     @field:NotNull
-    val keyType: PixKey.PixKeyType,
+    val keyType: PixKey.PixKeyType?,
 
     @field:NotNull
-    val accountType: BankAccount.BankAccountType,
+    val accountType: BankAccount.BankAccountType?,
 
+    @field:Size(max = 77)
     val keyValue: String?,
 ) {
     fun toModel(account: BankAccount): PixKey {
+        requireNotNull(keyType) { "Key type must not be null" }
         return PixKey(
-            clientId = clientId,
+            clientId = UUID.fromString(clientId),
             keyType = keyType,
-            keyValue = if(keyType == PixKey.PixKeyType.RANDOM) UUID.randomUUID().toString() else keyValue,
+            keyValue = if (keyType == PixKey.PixKeyType.RANDOM) UUID.randomUUID().toString() else keyValue,
             account = account
         )
     }
 
     fun isKeyValueValid(): Boolean {
-        return when(keyType) {
+        requireNotNull(keyType) { "Key type must not be null" }
+        return when (keyType) {
             PixKey.PixKeyType.CPF -> keyValue?.matches("^[0-9]{11}\$".toRegex()) ?: false
             PixKey.PixKeyType.CNPJ -> TODO()
             PixKey.PixKeyType.PHONE -> keyValue?.matches("^\\+[1-9][0-9]\\d{1,14}\$".toRegex()) ?: false

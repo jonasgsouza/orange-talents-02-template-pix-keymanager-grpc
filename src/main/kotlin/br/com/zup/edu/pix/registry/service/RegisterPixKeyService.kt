@@ -8,6 +8,7 @@ import br.com.zup.integration.BCB
 import br.com.zup.integration.ERPItau
 import br.com.zup.integration.response.BankAccountQueryResponse
 import io.micronaut.validation.Validated
+import java.lang.IllegalArgumentException
 import javax.inject.Singleton
 import javax.transaction.Transactional
 import javax.validation.Valid
@@ -24,8 +25,8 @@ class RegisterPixKeyService(
     fun registerKey(@Valid request: RegisterPixKeyRequest): PixKey {
         if (keyRepository.existsByKeyValue(request.keyValue)) throw PixKeyAlreadyExistsException()
         val bankAccountResponse: BankAccountQueryResponse =
-            erpItau.findBankAccount(request.clientId, request.accountType)
-                ?: throw IllegalStateException("Client not found")
+            erpItau.findBankAccount(request.clientId.toString(), request.accountType)
+                ?: throw IllegalArgumentException("Client not found")
         val pixKey = request.toModel(bankAccountResponse.toModel())
         keyRepository.save(pixKey)
         bcb.createPixKey(pixKey.toCreatePixKeyRequest())

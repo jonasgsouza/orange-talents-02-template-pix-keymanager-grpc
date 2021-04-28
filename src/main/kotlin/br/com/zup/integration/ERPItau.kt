@@ -13,6 +13,6 @@ interface ERPItau {
     @Get("/{clientId}/contas")
     fun findBankAccount(
         @PathVariable clientId: String,
-        @QueryValue("tipo") accountType: BankAccount.BankAccountType
+        @QueryValue("tipo") accountType: BankAccount.BankAccountType?
     ): BankAccountQueryResponse?
 }
