@@ -9,7 +9,7 @@ data class DeletePixKeyRequest(
     val participant: String
 ) {
     companion object {
-        fun of(pixKey: PixKey): DeletePixKeyRequest {
+        fun from(pixKey: PixKey): DeletePixKeyRequest {
             return DeletePixKeyRequest(
                 key = pixKey.keyValue!!,
                 participant = pixKey.account.ispb

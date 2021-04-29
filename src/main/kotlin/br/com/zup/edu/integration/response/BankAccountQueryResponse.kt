@@ -14,7 +14,8 @@ data class BankAccountQueryResponse(
 ) {
     fun toModel(): BankAccount {
         return BankAccount(
-            bankAccountType = bankAccountType.bankAccountType,
+            accountType = bankAccountType.bankAccountType,
+            institutionName = institution.name,
             ispb = institution.ispb,
             agency = agency,
             number = number,

@@ -30,7 +30,7 @@ class RegisterPixKeyService(
                 ?: throw IllegalArgumentException("Client not found")
         val pixKey = request.toModel(bankAccountResponse.toModel())
         repository.save(pixKey)
-        bcb.createPixKey(CreatePixKeyRequest.of(pixKey))
+        bcb.createPixKey(CreatePixKeyRequest.from(pixKey))
         return pixKey
     }
 }

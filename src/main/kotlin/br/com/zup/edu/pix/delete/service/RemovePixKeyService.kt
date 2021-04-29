@@ -24,7 +24,7 @@ class RemovePixKeyService(
         val pixKey = possiblePixKey.get()
         if (!pixKey.belongsTo(request.clientId)) throw IllegalArgumentException("Pix key does not belong to this clientId")
         repository.deleteById(pixKey.id!!)
-        val deleteRequest = DeletePixKeyRequest.of(pixKey)
+        val deleteRequest = DeletePixKeyRequest.from(pixKey)
         bcb.deletePixKey(deleteRequest.key, deleteRequest)
     }
 }

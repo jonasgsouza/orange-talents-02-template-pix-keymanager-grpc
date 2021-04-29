@@ -7,7 +7,9 @@ import javax.persistence.EnumType.STRING
 @Embeddable
 class BankAccount(
     @field:Enumerated(STRING)
-    val bankAccountType: BankAccountType,
+    val accountType: BankAccountType,
+
+    val institutionName: String,
 
     val ispb: String,
 
@@ -18,20 +20,11 @@ class BankAccount(
 //    @field:ManyToOne(cascade = [MERGE, PERSIST])
     @field:Embedded
     val holder: Holder,
-    ) {
+) {
 
 //    @Id
 //    @GeneratedValue(strategy = IDENTITY)
 //    val id: Long? = null;
-
-    fun toBankAccountRequest(): BankAccountRequest {
-        return BankAccountRequest(
-            participant = ispb,
-            branch = agency,
-            accountNumber = number,
-            accountType = bankAccountType.bankAccountRequestType
-        )
-    }
 
     enum class BankAccountType(val bankAccountRequestType: BankAccountRequest.BankAccountType) {
         CONTA_CORRENTE(BankAccountRequest.BankAccountType.CACC),

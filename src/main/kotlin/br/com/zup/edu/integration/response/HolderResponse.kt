@@ -13,6 +13,7 @@ data class HolderResponse(
 ) {
     fun toModel(): Holder {
         return Holder(
+            id = id,
             name = name,
             document = document
         )

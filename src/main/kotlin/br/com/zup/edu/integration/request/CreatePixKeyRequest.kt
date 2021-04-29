@@ -12,15 +12,16 @@ data class CreatePixKeyRequest(
 ) {
 
     companion object {
-        fun of(pixKey: PixKey): CreatePixKeyRequest {
+        fun from(pixKey: PixKey): CreatePixKeyRequest {
             return CreatePixKeyRequest(
                 keyType = pixKey.keyType.bcbPixKeyType,
                 key = pixKey.keyValue,
-                bankAccount = pixKey.account.toBankAccountRequest(),
-                owner = pixKey.account.holder.toOwnerRequest()
+                bankAccount = BankAccountRequest.from(pixKey.account),
+                owner = OwnerRequest.from(pixKey.account.holder)
             )
         }
     }
+
     enum class PixKeyType {
         CPF, CNPJ, PHONE, EMAIL, RANDOM
     }

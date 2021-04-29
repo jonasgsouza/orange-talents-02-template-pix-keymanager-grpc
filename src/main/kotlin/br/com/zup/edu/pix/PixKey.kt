@@ -11,9 +11,6 @@ import javax.validation.constraints.NotNull
 
 @Entity
 class PixKey(
-    @field:NotBlank
-    val clientId: UUID,
-
     @field:NotNull
     @Enumerated(STRING)
     @Column(nullable = false)
@@ -39,7 +36,7 @@ class PixKey(
     val createdAt: LocalDateTime = LocalDateTime.now()
 
     fun belongsTo(clientId: UUID): Boolean {
-        return this.clientId == clientId
+        return account.holder.id == clientId
     }
 
     enum class PixKeyType(val bcbPixKeyType: CreatePixKeyRequest.PixKeyType) {

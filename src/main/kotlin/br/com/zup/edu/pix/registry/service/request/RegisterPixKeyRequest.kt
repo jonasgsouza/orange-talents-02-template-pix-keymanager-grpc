@@ -30,7 +30,6 @@ data class RegisterPixKeyRequest(
     fun toModel(account: BankAccount): PixKey {
         requireNotNull(keyType) { "Key type must not be null" }
         return PixKey(
-            clientId = UUID.fromString(clientId),
             keyType = keyType,
             keyValue = if (keyType == PixKey.PixKeyType.RANDOM) UUID.randomUUID().toString() else keyValue,
             account = account

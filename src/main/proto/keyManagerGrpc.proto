@@ -1,11 +1,14 @@
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
 option java_multiple_files = true;
 option java_package = "br.com.zup.edu";
 option java_outer_classname = "KeyManagerGrpc";
 option objc_class_prefix = "HLW";
 
 package br.com.zup.edu;
+
 
 service RegisterPixKeyService {
   rpc registerKey(RegisterPixKeyRequestGrpc) returns (RegisterPixKeyResponseGrpc) {}
@@ -48,15 +51,27 @@ message RemovePixKeyRequestGrpc {
   string pixId = 2;
 }
 
-message RemovePixKeyResponseGrpc {
-
-}
+message RemovePixKeyResponseGrpc {}
 
 message FindPixKeyRequestGrpc {
-  string pixId = 1;
+  string clientId = 1;
+  string pixId = 2;
+}
 
+message BankAccountGrpc {
+  string institutionName = 1;
+  string agency = 2;
+  string number = 3;
+  AccountTypeGrpc accountType = 4;
 }
 
 message FindPixKeyResponseGrpc{
-
+  string pixId = 1;
+  string clientId = 2;
+  KeyTypeGrpc keyType = 3;
+  string keyValue = 4;
+  string clientName = 5;
+  string clientDocument = 6;
+  BankAccountGrpc account = 7;
+  google.protobuf.Timestamp createdAt = 8;
 }
