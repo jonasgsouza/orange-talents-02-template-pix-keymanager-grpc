@@ -1,5 +1,6 @@
 package br.com.zup.edu.integration.request
 
+import br.com.zup.edu.integration.enums.OwnerType
 import br.com.zup.edu.pix.Holder
 import io.micronaut.core.annotation.Introspected
 
@@ -21,15 +22,11 @@ data class OwnerRequest(
 
         private fun getOwnerType(document: String): OwnerType {
             return when (document.length) {
-                11 -> OwnerRequest.OwnerType.NATURAL_PERSON
-                14 -> OwnerRequest.OwnerType.LEGAL_PERSON
+                11 -> OwnerType.NATURAL_PERSON
+                14 -> OwnerType.LEGAL_PERSON
                 else -> throw IllegalArgumentException("O documento do titular possui tamanho inválido")
             }
         }
     }
 
-
-    enum class OwnerType {
-        NATURAL_PERSON, LEGAL_PERSON
-    }
 }

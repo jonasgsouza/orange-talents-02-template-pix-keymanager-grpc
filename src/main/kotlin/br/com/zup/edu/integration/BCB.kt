@@ -2,6 +2,7 @@ package br.com.zup.edu.integration
 
 import br.com.zup.edu.integration.request.CreatePixKeyRequest
 import br.com.zup.edu.integration.request.DeletePixKeyRequest
+import br.com.zup.edu.integration.response.PixKeyDetailsResponse
 import io.micronaut.http.MediaType.APPLICATION_XML
 import io.micronaut.http.annotation.*
 import io.micronaut.http.client.annotation.Client
@@ -18,4 +19,9 @@ interface BCB {
     @Consumes(APPLICATION_XML)
     @Produces(APPLICATION_XML)
     fun deletePixKey(@PathVariable key: String, @Body request: DeletePixKeyRequest): Any?
+
+    @Get("{key}")
+    @Consumes(APPLICATION_XML)
+    @Produces(APPLICATION_XML)
+    fun findPixKey(@PathVariable("key") keyValue: String): PixKeyDetailsResponse
 }

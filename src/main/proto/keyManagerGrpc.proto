@@ -9,7 +9,6 @@ option objc_class_prefix = "HLW";
 
 package br.com.zup.edu;
 
-
 service RegisterPixKeyService {
   rpc registerKey(RegisterPixKeyRequestGrpc) returns (RegisterPixKeyResponseGrpc) {}
 }
@@ -53,9 +52,17 @@ message RemovePixKeyRequestGrpc {
 
 message RemovePixKeyResponseGrpc {}
 
+
 message FindPixKeyRequestGrpc {
-  string clientId = 1;
-  string pixId = 2;
+  message FilterByPixIdGrpc {
+    string clientId = 1;
+    string pixId = 2;
+  }
+
+  oneof filter {
+    FilterByPixIdGrpc pixId = 1;
+    string keyValue = 2;
+  }
 }
 
 message BankAccountGrpc {
@@ -65,7 +72,7 @@ message BankAccountGrpc {
   AccountTypeGrpc accountType = 4;
 }
 
-message FindPixKeyResponseGrpc{
+message FindPixKeyResponseGrpc {
   string pixId = 1;
   string clientId = 2;
   KeyTypeGrpc keyType = 3;
@@ -75,3 +82,4 @@ message FindPixKeyResponseGrpc{
   BankAccountGrpc account = 7;
   google.protobuf.Timestamp createdAt = 8;
 }
+

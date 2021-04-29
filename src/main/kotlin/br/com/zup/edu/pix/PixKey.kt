@@ -1,6 +1,6 @@
 package br.com.zup.edu.pix
 
-import br.com.zup.edu.integration.request.CreatePixKeyRequest
+import br.com.zup.edu.integration.enums.BCBPixKeyType
 import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
@@ -39,11 +39,11 @@ class PixKey(
         return account.holder.id == clientId
     }
 
-    enum class PixKeyType(val bcbPixKeyType: CreatePixKeyRequest.PixKeyType) {
-        CPF(CreatePixKeyRequest.PixKeyType.CPF),
-        CNPJ(CreatePixKeyRequest.PixKeyType.CNPJ),
-        PHONE(CreatePixKeyRequest.PixKeyType.PHONE),
-        EMAIL(CreatePixKeyRequest.PixKeyType.EMAIL),
-        RANDOM(CreatePixKeyRequest.PixKeyType.RANDOM)
+    enum class PixKeyType(val bcbPixKeyType: BCBPixKeyType) {
+        CPF(BCBPixKeyType.CPF),
+        CNPJ(BCBPixKeyType.CNPJ),
+        PHONE(BCBPixKeyType.PHONE),
+        EMAIL(BCBPixKeyType.EMAIL),
+        RANDOM(BCBPixKeyType.RANDOM)
     }
 }

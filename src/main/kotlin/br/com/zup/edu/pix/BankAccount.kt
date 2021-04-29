@@ -1,5 +1,7 @@
 package br.com.zup.edu.pix
 
+import br.com.zup.edu.integration.enums.BCBBankAccountType
+import br.com.zup.edu.integration.enums.ERPItauBankAccountType
 import br.com.zup.edu.integration.request.BankAccountRequest
 import javax.persistence.*
 import javax.persistence.EnumType.STRING
@@ -26,8 +28,8 @@ class BankAccount(
 //    @GeneratedValue(strategy = IDENTITY)
 //    val id: Long? = null;
 
-    enum class BankAccountType(val bankAccountRequestType: BankAccountRequest.BankAccountType) {
-        CONTA_CORRENTE(BankAccountRequest.BankAccountType.CACC),
-        CONTA_POUPANCA(BankAccountRequest.BankAccountType.SVGS)
+    enum class BankAccountType(val bcbBankAccountType: BCBBankAccountType) {
+        CONTA_CORRENTE(BCBBankAccountType.CACC),
+        CONTA_POUPANCA(BCBBankAccountType.SVGS)
     }
 }

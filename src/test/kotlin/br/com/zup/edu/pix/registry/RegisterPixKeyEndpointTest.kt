@@ -7,6 +7,9 @@ import br.com.zup.edu.RegisterPixKeyRequestGrpc
 import br.com.zup.edu.RegisterPixKeyServiceGrpc
 import br.com.zup.edu.integration.BCB
 import br.com.zup.edu.integration.ERPItau
+import br.com.zup.edu.integration.enums.BCBBankAccountType
+import br.com.zup.edu.integration.enums.ERPItauBankAccountType
+import br.com.zup.edu.integration.enums.OwnerType
 import br.com.zup.edu.integration.request.BankAccountRequest
 import br.com.zup.edu.integration.request.CreatePixKeyRequest
 import br.com.zup.edu.integration.request.OwnerRequest
@@ -55,7 +58,7 @@ internal class RegisterPixKeyEndpointTest(
     @Test
     fun `deveria cadastrar uma nova chave pix com sucesso`() {
         val bankAccountQueryResponse = BankAccountQueryResponse(
-            bankAccountType = BankAccountQueryResponse.BankAccountType.CONTA_CORRENTE,
+            bankAccountType = ERPItauBankAccountType.CONTA_CORRENTE,
             agency = "0001",
             number = "00000000",
             institution = InstitutionResponse(
@@ -78,10 +81,10 @@ internal class RegisterPixKeyEndpointTest(
                 participant = "00001",
                 branch = "0001",
                 accountNumber = "00000000",
-                accountType = BankAccountRequest.BankAccountType.CACC
+                accountType = BCBBankAccountType.CACC
             ),
             owner = OwnerRequest(
-                type = OwnerRequest.OwnerType.NATURAL_PERSON,
+                type = OwnerType.NATURAL_PERSON,
                 name = "Fulano",
                 taxIdNumber = "12345678909"
             )
