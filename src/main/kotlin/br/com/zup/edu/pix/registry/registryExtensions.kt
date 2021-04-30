@@ -3,25 +3,25 @@ package br.com.zup.edu.pix.registry.service
 import br.com.zup.edu.AccountTypeGrpc
 import br.com.zup.edu.KeyTypeGrpc
 import br.com.zup.edu.RegisterPixKeyRequestGrpc
-import br.com.zup.edu.pix.BankAccount
-import br.com.zup.edu.pix.PixKey
+import br.com.zup.edu.pix.enums.BankAccountType
+import br.com.zup.edu.pix.enums.PixKeyType
 import br.com.zup.edu.pix.registry.service.request.RegisterPixKeyRequest
 
-fun KeyTypeGrpc.toPixKeyType(): PixKey.PixKeyType {
+fun KeyTypeGrpc.toPixKeyType(): PixKeyType {
     return when (this) {
-        KeyTypeGrpc.CPF -> PixKey.PixKeyType.CPF
-        KeyTypeGrpc.CNPJ -> PixKey.PixKeyType.CNPJ
-        KeyTypeGrpc.EMAIL -> PixKey.PixKeyType.EMAIL
-        KeyTypeGrpc.PHONE -> PixKey.PixKeyType.PHONE
-        KeyTypeGrpc.RANDOM -> PixKey.PixKeyType.RANDOM
+        KeyTypeGrpc.CPF -> PixKeyType.CPF
+        KeyTypeGrpc.CNPJ -> PixKeyType.CNPJ
+        KeyTypeGrpc.EMAIL -> PixKeyType.EMAIL
+        KeyTypeGrpc.PHONE -> PixKeyType.PHONE
+        KeyTypeGrpc.RANDOM -> PixKeyType.RANDOM
         KeyTypeGrpc.UNRECOGNIZED -> throw IllegalArgumentException("Invalid keyType")
     }
 }
 
-fun AccountTypeGrpc.toBankAccountType(): BankAccount.BankAccountType {
+fun AccountTypeGrpc.toBankAccountType(): BankAccountType {
     return when (this) {
-        AccountTypeGrpc.CONTA_CORRENTE -> BankAccount.BankAccountType.CONTA_CORRENTE
-        AccountTypeGrpc.CONTA_POUPANCA -> BankAccount.BankAccountType.CONTA_POUPANCA
+        AccountTypeGrpc.CONTA_CORRENTE -> BankAccountType.CONTA_CORRENTE
+        AccountTypeGrpc.CONTA_POUPANCA -> BankAccountType.CONTA_POUPANCA
         AccountTypeGrpc.UNRECOGNIZED -> throw IllegalArgumentException("Invalid accountType")
     }
 }

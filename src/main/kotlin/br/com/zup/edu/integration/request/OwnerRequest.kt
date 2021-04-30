@@ -14,18 +14,14 @@ data class OwnerRequest(
     companion object {
         fun from(holder: Holder): OwnerRequest {
             return OwnerRequest(
-                type = getOwnerType(holder.document),
+                type = when (holder.document.length) {
+                    11 -> OwnerType.NATURAL_PERSON
+                    14 -> OwnerType.LEGAL_PERSON
+                    else -> throw IllegalArgumentException("O documento do titular possui tamanho inválido")
+                },
                 name = holder.name,
                 taxIdNumber = holder.document
             )
-        }
-
-        private fun getOwnerType(document: String): OwnerType {
-            return when (document.length) {
-                11 -> OwnerType.NATURAL_PERSON
-                14 -> OwnerType.LEGAL_PERSON
-                else -> throw IllegalArgumentException("O documento do titular possui tamanho inválido")
-            }
         }
     }
 

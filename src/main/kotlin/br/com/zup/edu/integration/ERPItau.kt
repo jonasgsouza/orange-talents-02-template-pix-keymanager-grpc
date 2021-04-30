@@ -1,7 +1,7 @@
 package br.com.zup.edu.integration
 
-import br.com.zup.edu.pix.BankAccount
 import br.com.zup.edu.integration.response.BankAccountQueryResponse
+import br.com.zup.edu.pix.enums.BankAccountType
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.PathVariable
 import io.micronaut.http.annotation.QueryValue
@@ -13,6 +13,6 @@ interface ERPItau {
     @Get("/{clientId}/contas")
     fun findBankAccount(
         @PathVariable clientId: String,
-        @QueryValue("tipo") accountType: BankAccount.BankAccountType?
+        @QueryValue("tipo") accountType: BankAccountType?
     ): BankAccountQueryResponse?
 }

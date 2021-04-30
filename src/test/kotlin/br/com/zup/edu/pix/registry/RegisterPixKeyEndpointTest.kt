@@ -8,6 +8,7 @@ import br.com.zup.edu.RegisterPixKeyServiceGrpc
 import br.com.zup.edu.integration.BCB
 import br.com.zup.edu.integration.ERPItau
 import br.com.zup.edu.integration.enums.BCBBankAccountType
+import br.com.zup.edu.integration.enums.BCBPixKeyType
 import br.com.zup.edu.integration.enums.ERPItauBankAccountType
 import br.com.zup.edu.integration.enums.OwnerType
 import br.com.zup.edu.integration.request.BankAccountRequest
@@ -16,7 +17,7 @@ import br.com.zup.edu.integration.request.OwnerRequest
 import br.com.zup.edu.integration.response.BankAccountQueryResponse
 import br.com.zup.edu.integration.response.HolderResponse
 import br.com.zup.edu.integration.response.InstitutionResponse
-import br.com.zup.edu.pix.BankAccount
+import br.com.zup.edu.pix.enums.BankAccountType
 import br.com.zup.edu.pix.repository.PixKeyRepository
 import io.grpc.ManagedChannel
 import io.micronaut.context.annotation.Factory
@@ -71,11 +72,11 @@ internal class RegisterPixKeyEndpointTest(
                 document = "12345678909"
             )
         )
-        `when`(erpItau.findBankAccount(clientId.toString(), BankAccount.BankAccountType.CONTA_CORRENTE))
+        `when`(erpItau.findBankAccount(clientId.toString(), BankAccountType.CONTA_CORRENTE))
             .thenReturn(bankAccountQueryResponse)
 
         val crreatePixKeyRequest = CreatePixKeyRequest(
-            keyType = CreatePixKeyRequest.PixKeyType.CPF,
+            keyType = BCBPixKeyType.CPF,
             key = "12345678909",
             bankAccount = BankAccountRequest(
                 participant = "00001",

@@ -2,6 +2,8 @@ package br.com.zup.edu.pix.registry.service.request
 
 import br.com.zup.edu.pix.BankAccount
 import br.com.zup.edu.pix.PixKey
+import br.com.zup.edu.pix.enums.BankAccountType
+import br.com.zup.edu.pix.enums.PixKeyType
 import br.com.zup.edu.shared.validation.ValidPixKey
 import br.com.zup.edu.shared.validation.ValidUUID
 import io.micronaut.core.annotation.Introspected
@@ -19,10 +21,10 @@ data class RegisterPixKeyRequest(
     val clientId: String?,
 
     @field:NotNull
-    val keyType: PixKey.PixKeyType?,
+    val keyType: PixKeyType?,
 
     @field:NotNull
-    val accountType: BankAccount.BankAccountType?,
+    val accountType: BankAccountType?,
 
     @field:Size(max = 77)
     val keyValue: String?,
@@ -31,7 +33,7 @@ data class RegisterPixKeyRequest(
         requireNotNull(keyType) { "Key type must not be null" }
         return PixKey(
             keyType = keyType,
-            keyValue = if (keyType == PixKey.PixKeyType.RANDOM) UUID.randomUUID().toString() else keyValue,
+            keyValue = if (keyType == PixKeyType.RANDOM) UUID.randomUUID().toString() else keyValue,
             account = account
         )
     }
@@ -39,14 +41,14 @@ data class RegisterPixKeyRequest(
     fun isKeyValueValid(): Boolean {
         requireNotNull(keyType) { "Key type must not be null" }
         return when (keyType) {
-            PixKey.PixKeyType.CPF -> keyValue?.matches("^[0-9]{11}\$".toRegex()) ?: false
-            PixKey.PixKeyType.CNPJ -> TODO()
-            PixKey.PixKeyType.PHONE -> keyValue?.matches("^\\+[1-9][0-9]\\d{1,14}\$".toRegex()) ?: false
-            PixKey.PixKeyType.EMAIL -> EmailValidator().run {
+            PixKeyType.CPF -> keyValue?.matches("^[0-9]{11}\$".toRegex()) ?: false
+            PixKeyType.CNPJ -> TODO()
+            PixKeyType.PHONE -> keyValue?.matches("^\\+[1-9][0-9]\\d{1,14}\$".toRegex()) ?: false
+            PixKeyType.EMAIL -> EmailValidator().run {
                 initialize(null)
                 isValid(keyValue, null)
             }
-            PixKey.PixKeyType.RANDOM -> keyValue.isNullOrBlank()
+            PixKeyType.RANDOM -> keyValue.isNullOrBlank()
         }
     }
 }
