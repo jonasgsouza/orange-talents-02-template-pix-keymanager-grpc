@@ -1,6 +1,7 @@
 package br.com.zup.edu.pix
 
 import br.com.zup.edu.pix.enums.PixKeyType
+import br.com.zup.edu.pix.find.service.PixKeyDetails
 import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
@@ -37,5 +38,15 @@ class PixKey(
 
     fun belongsTo(clientId: UUID): Boolean {
         return account.holder.id == clientId
+    }
+
+    fun toPixKeyDetails(): PixKeyDetails {
+        return PixKeyDetails(
+            pixId = uuid,
+            keyType = keyType,
+            keyValue = keyValue,
+            createdAt = createdAt,
+            account = account.toBankAccountDetails()
+        )
     }
 }

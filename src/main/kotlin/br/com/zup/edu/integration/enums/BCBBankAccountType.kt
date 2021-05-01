@@ -4,7 +4,14 @@ import br.com.zup.edu.pix.enums.BankAccountType
 import io.micronaut.core.annotation.Introspected
 
 @Introspected
-enum class BCBBankAccountType(val bankAccountType: BankAccountType) {
-    CACC(BankAccountType.CONTA_CORRENTE),
-    SVGS(BankAccountType.CONTA_POUPANCA)
+enum class BCBBankAccountType {
+    CACC,
+    SVGS;
+
+    fun toBankAccountType(): BankAccountType {
+        return when (this) {
+            CACC -> BankAccountType.CONTA_CORRENTE
+            SVGS -> BankAccountType.CONTA_POUPANCA
+        }
+    }
 }

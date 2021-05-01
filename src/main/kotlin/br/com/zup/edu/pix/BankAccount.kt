@@ -1,6 +1,7 @@
 package br.com.zup.edu.pix
 
 import br.com.zup.edu.pix.enums.BankAccountType
+import br.com.zup.edu.pix.find.service.BankAccountDetails
 import javax.persistence.Embeddable
 import javax.persistence.Embedded
 import javax.persistence.EnumType.STRING
@@ -23,6 +24,15 @@ class BankAccount(
     @field:Embedded
     val holder: Holder,
 ) {
+    fun toBankAccountDetails(): BankAccountDetails {
+        return BankAccountDetails(
+            institutionName = institutionName,
+            agency = agency,
+            number = number,
+            accountType = accountType,
+            holder = holder.toHolderDetails()
+        )
+    }
 
 //    @Id
 //    @GeneratedValue(strategy = IDENTITY)
