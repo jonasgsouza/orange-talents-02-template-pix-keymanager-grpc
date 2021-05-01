@@ -42,8 +42,12 @@ sealed class PixKeyFinder {
         override fun find(bcb: BCB, repository: PixKeyRepository): PixKeyDetails {
             requireNotNull(keyValue) { "KeyValue must not be null" }
             return repository.findByKeyValue(keyValue)
-                .map { PixKeyDetails.from(null!!) }
-                .orElseThrow { PixKeyNotFoundException() }
+                .map { pixKey -> PixKeyDetails.from(pixKey) }
+                .orElseGet {
+                    Optional.ofNullable(bcb.findPixKey(keyValue))
+                        .map { bcbPixDetailsResponse -> PixKeyDetails.from(bcbPixDetailsResponse, "") }
+                        .orElseThrow { PixKeyNotFoundException() }
+                }
         }
 
     }

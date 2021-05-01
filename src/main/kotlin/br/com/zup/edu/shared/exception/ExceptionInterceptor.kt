@@ -19,6 +19,7 @@ class ExceptionInterceptor(
             context?.proceed()
         } catch (e: Exception) {
             logger.info("Handling ${e.javaClass.simpleName} thrown in method ${context?.methodName}")
+            e.printStackTrace()
             context?.parameterValues?.get(1)?.let { possibleResponseObserver ->
                 if (possibleResponseObserver is StreamObserver<*>) {
                     val status = exceptionHandlerResolver.resolve(e).handle(e)

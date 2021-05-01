@@ -81,10 +81,9 @@ message HolderGrpc {
 
 message FindPixKeyResponseGrpc {
   string pixId = 1;
-  string clientId = 2;
-  KeyTypeGrpc keyType = 3;
-  string keyValue = 4;
-  google.protobuf.Timestamp createdAt = 5;
-  BankAccountGrpc account = 6;
+  KeyTypeGrpc keyType = 2;
+  string keyValue = 3;
+  google.protobuf.Timestamp createdAt = 4;
+  BankAccountGrpc account = 5;
 }
 
