@@ -29,6 +29,7 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 import java.util.*
@@ -72,6 +73,7 @@ internal class RegisterPixKeyEndpointTest(
                 document = "12345678909"
             )
         )
+        Mockito.
         `when`(erpItau.findBankAccount(clientId.toString(), BankAccountType.CONTA_CORRENTE))
             .thenReturn(bankAccountQueryResponse)
 

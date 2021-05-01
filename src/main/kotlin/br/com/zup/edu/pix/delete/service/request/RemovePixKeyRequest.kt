@@ -1,14 +1,16 @@
 package br.com.zup.edu.pix.delete.service.request
 
+import br.com.zup.edu.shared.validation.ValidUUID
 import io.micronaut.core.annotation.Introspected
-import java.util.*
 import javax.validation.constraints.NotBlank
 
 @Introspected
 data class RemovePixKeyRequest(
     @field:NotBlank
-    val clientId: UUID,
+    @ValidUUID
+    val clientId: String?,
 
     @field:NotBlank
-    val pixId: UUID
+    @ValidUUID
+    val pixId: String?
 )

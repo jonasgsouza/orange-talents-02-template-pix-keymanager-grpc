@@ -5,7 +5,6 @@ import br.com.zup.edu.RemovePixKeyRequestGrpc
 import br.com.zup.edu.RemovePixKeyResponseGrpc
 import br.com.zup.edu.RemovePixKeyServiceGrpc
 import br.com.zup.edu.pix.delete.service.RemovePixKeyService
-import br.com.zup.edu.pix.delete.service.toRemovePixKeyRequest
 import br.com.zup.edu.shared.exception.HandleExceptions
 import io.grpc.stub.StreamObserver
 import javax.inject.Singleton

@@ -1,0 +1,1 @@
+insert into institution (name, ispb) values ('00000000', 'BCO DO BRASIL S.A.')

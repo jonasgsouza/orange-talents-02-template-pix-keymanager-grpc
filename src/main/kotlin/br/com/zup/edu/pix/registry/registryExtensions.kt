@@ -1,4 +1,4 @@
-package br.com.zup.edu.pix.registry.service
+package br.com.zup.edu.pix.registry
 
 import br.com.zup.edu.AccountTypeGrpc
 import br.com.zup.edu.KeyTypeGrpc
