@@ -23,5 +23,5 @@ interface BCB {
     @Get("{key}")
     @Consumes(APPLICATION_XML)
     @Produces(APPLICATION_XML)
-    fun findPixKey(@PathVariable("key") keyValue: String): PixKeyDetailsResponse
+    fun findPixKey(@PathVariable("key") keyValue: String): PixKeyDetailsResponse?
 }

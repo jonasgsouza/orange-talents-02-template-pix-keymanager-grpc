@@ -48,7 +48,6 @@ fun findPixKeyResponseGrpcFrom(pixKeyDetails: PixKeyDetails): FindPixKeyResponse
                         .setName(pixKeyDetails.account.holder.name)
                         .setDocument(pixKeyDetails.account.holder.document)
                 )
-                .build()
         )
         .setCreatedAt(pixKeyDetails.createdAt.toGrpcTimestamp())
         .build()

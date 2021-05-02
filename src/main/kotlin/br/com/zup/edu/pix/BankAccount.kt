@@ -9,7 +9,7 @@ import javax.persistence.Enumerated
 
 @Embeddable
 class BankAccount(
-    @field:Enumerated(STRING)
+    @Enumerated(STRING)
     val accountType: BankAccountType,
 
     val institutionName: String,
@@ -21,7 +21,7 @@ class BankAccount(
     val number: String,
 
 //    @field:ManyToOne(cascade = [MERGE, PERSIST])
-    @field:Embedded
+    @Embedded
     val holder: Holder,
 ) {
     fun toBankAccountDetails(): BankAccountDetails {
