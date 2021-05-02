@@ -18,7 +18,7 @@ fun FindPixKeyRequestGrpc.toPixKeyFinder(): PixKeyFinder {
             )
         }
         KEYVALUE -> keyValue.let { keyValue -> PixKeyFinder.FindPixKeyByValue(keyValue = keyValue) }
-        FILTER_NOT_SET -> throw IllegalArgumentException("Invalid arguments")
+        null, FILTER_NOT_SET -> throw IllegalArgumentException("Invalid arguments")
     }
 }
 

@@ -20,7 +20,6 @@ class BankAccount(
 
     val number: String,
 
-//    @field:ManyToOne(cascade = [MERGE, PERSIST])
     @Embedded
     val holder: Holder,
 ) {
@@ -34,7 +33,4 @@ class BankAccount(
         )
     }
 
-//    @Id
-//    @GeneratedValue(strategy = IDENTITY)
-//    val id: Long? = null;
 }

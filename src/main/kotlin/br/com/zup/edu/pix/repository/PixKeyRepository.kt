@@ -12,4 +12,6 @@ interface PixKeyRepository : JpaRepository<PixKey, Long> {
     fun findByUuid(uuid: UUID): Optional<PixKey>
 
     fun findByKeyValue(keyValue: String): Optional<PixKey>
+
+    fun findByAccountHolderId(clientId: UUID): List<PixKey>
 }

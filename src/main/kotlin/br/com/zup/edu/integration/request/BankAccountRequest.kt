@@ -18,7 +18,7 @@ data class BankAccountRequest(
                 participant = bankAccount.ispb,
                 branch = bankAccount.agency,
                 accountNumber = bankAccount.number,
-                accountType = bankAccount.accountType.bcbBankAccountType
+                accountType = bankAccount.accountType.toBCBBankAccountType()
             )
         }
     }

@@ -15,7 +15,7 @@ data class CreatePixKeyRequest(
     companion object {
         fun from(pixKey: PixKey): CreatePixKeyRequest {
             return CreatePixKeyRequest(
-                keyType = pixKey.keyType.bcbPixKeyType,
+                keyType = pixKey.keyType.toBCBPixKeyType(),
                 key = pixKey.keyValue,
                 bankAccount = BankAccountRequest.from(pixKey.account),
                 owner = OwnerRequest.from(pixKey.account.holder)

@@ -21,6 +21,10 @@ service FindPixKeyService {
   rpc findKey(FindPixKeyRequestGrpc) returns (FindPixKeyResponseGrpc) {}
 }
 
+service ListPixKeyService {
+  rpc findKeys(ListPixKeyRequestGrpc) returns (ListPixKeyResponseGrpc) {}
+}
+
 enum KeyTypeGrpc {
   CPF = 0;
   CNPJ = 1;
@@ -51,7 +55,6 @@ message RemovePixKeyRequestGrpc {
 }
 
 message RemovePixKeyResponseGrpc {}
-
 
 message FindPixKeyRequestGrpc {
   message FilterByPixIdGrpc {
@@ -87,3 +90,19 @@ message FindPixKeyResponseGrpc {
   BankAccountGrpc account = 5;
 }
 
+message ListPixKeyRequestGrpc {
+  string clientId = 1;
+}
+
+message ListPixKeyDetailsGrpc {
+  string pixId = 1;
+  string clientId = 2;
+  KeyTypeGrpc keyType = 3;
+  string keyValue = 4;
+  AccountTypeGrpc accountType = 5;
+  google.protobuf.Timestamp createdAt = 6;
+}
+
+message ListPixKeyResponseGrpc {
+  repeated ListPixKeyDetailsGrpc key = 1;
+}
