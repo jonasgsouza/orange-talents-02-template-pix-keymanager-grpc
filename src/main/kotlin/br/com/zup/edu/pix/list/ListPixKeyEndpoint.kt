@@ -19,19 +19,21 @@ class ListPixKeyEndpoint(
 
     override fun findKeys(request: ListPixKeyRequestGrpc?, responseObserver: StreamObserver<ListPixKeyResponseGrpc>?) {
         requireNotNull(request) { "Request must not be null" }
-        val responseBuilder: ListPixKeyResponseGrpc.Builder = ListPixKeyResponseGrpc.newBuilder()
-        repository.findByAccountHolderId(UUID.fromString(request.clientId))
-            .map { pixKey ->
-                ListPixKeyDetailsGrpc.newBuilder()
-                    .setPixId(pixKey.uuid.toString())
-                    .setClientId(pixKey.account.holder.id.toString())
-                    .setKeyType(pixKey.keyType.toKeyTypeGrpc())
-                    .setKeyValue(pixKey.keyValue)
-                    .setAccountType(pixKey.account.accountType.toAccountTypeGrpc())
-                    .setCreatedAt(pixKey.createdAt.toGrpcTimestamp())
-            }
-            .forEach { listPixKeyDetails -> responseBuilder.addKey(listPixKeyDetails) }
-        responseObserver?.onNext(responseBuilder.build())
+        val response: ListPixKeyResponseGrpc = ListPixKeyResponseGrpc.newBuilder().run {
+            repository.findByAccountHolderId(UUID.fromString(request.clientId))
+                .map { pixKey ->
+                    ListPixKeyDetailsGrpc.newBuilder()
+                        .setPixId(pixKey.uuid.toString())
+                        .setClientId(pixKey.account.holder.id.toString())
+                        .setKeyType(pixKey.keyType.toKeyTypeGrpc())
+                        .setKeyValue(pixKey.keyValue)
+                        .setAccountType(pixKey.account.accountType.toAccountTypeGrpc())
+                        .setCreatedAt(pixKey.createdAt.toGrpcTimestamp())
+                }
+                .forEach { listPixKeyDetails -> addPixKeys(listPixKeyDetails) }
+            build()
+        }
+        responseObserver?.onNext(response)
         responseObserver?.onCompleted()
     }
 }

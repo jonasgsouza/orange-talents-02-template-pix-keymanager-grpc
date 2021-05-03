@@ -104,5 +104,5 @@ message ListPixKeyDetailsGrpc {
 }
 
 message ListPixKeyResponseGrpc {
-  repeated ListPixKeyDetailsGrpc key = 1;
+  repeated ListPixKeyDetailsGrpc pixKeys = 1;
 }
