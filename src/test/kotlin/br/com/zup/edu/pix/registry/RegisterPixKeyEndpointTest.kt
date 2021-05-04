@@ -29,9 +29,7 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.mock
+import org.mockito.Mockito.*
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -59,6 +57,7 @@ internal class RegisterPixKeyEndpointTest(
 
     @Test
     fun `deveria cadastrar uma nova chave pix com sucesso`() {
+        val document = "12345678909"
         val bankAccountQueryResponse = BankAccountQueryResponse(
             bankAccountType = ERPItauBankAccountType.CONTA_CORRENTE,
             agency = "0001",
@@ -70,10 +69,9 @@ internal class RegisterPixKeyEndpointTest(
             holder = HolderResponse(
                 id = clientId,
                 name = "Fulano",
-                document = "12345678909"
+                document = document
             )
         )
-        Mockito.
         `when`(erpItau.findBankAccount(clientId.toString(), BankAccountType.CONTA_CORRENTE))
             .thenReturn(bankAccountQueryResponse)
 
@@ -89,17 +87,16 @@ internal class RegisterPixKeyEndpointTest(
             owner = OwnerRequest(
                 type = OwnerType.NATURAL_PERSON,
                 name = "Fulano",
-                taxIdNumber = "12345678909"
+                taxIdNumber = document
             )
         )
-        `when`(bcb.createPixKey(crreatePixKeyRequest))
-            .thenReturn(Any())
+        doNothing().`when`(bcb).createPixKey(crreatePixKeyRequest)
 
         val response = grpcClient.registerKey(
             RegisterPixKeyRequestGrpc.newBuilder()
                 .setClientId(clientId.toString())
                 .setKeyType(KeyTypeGrpc.CPF)
-                .setKeyValue("12345678909")
+                .setKeyValue(document)
                 .setAccountType(AccountTypeGrpc.CONTA_CORRENTE)
                 .build()
         )

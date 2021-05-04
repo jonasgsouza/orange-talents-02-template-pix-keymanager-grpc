@@ -13,12 +13,12 @@ interface BCB {
     @Post
     @Consumes(APPLICATION_XML)
     @Produces(APPLICATION_XML)
-    fun createPixKey(@Body createPixRequest: CreatePixKeyRequest): Any?
+    fun createPixKey(@Body createPixRequest: CreatePixKeyRequest)
 
     @Delete("{key}")
     @Consumes(APPLICATION_XML)
     @Produces(APPLICATION_XML)
-    fun deletePixKey(@PathVariable key: String, @Body request: DeletePixKeyRequest): Any?
+    fun deletePixKey(@PathVariable key: String, @Body request: DeletePixKeyRequest)
 
     @Get("{key}")
     @Consumes(APPLICATION_XML)

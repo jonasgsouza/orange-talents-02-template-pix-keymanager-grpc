@@ -21,7 +21,6 @@ class PixKey(
     @Column(unique = true, nullable = false, length = 77)
     val keyValue: String?,
 
-//    @field:ManyToOne(cascade = [MERGE, PERSIST])
     @field:NotNull
     @Embedded
     @Column(nullable = false)

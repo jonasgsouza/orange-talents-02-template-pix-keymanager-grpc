@@ -19,9 +19,4 @@ class Holder(
             document = document
         )
     }
-//    @Id
-//    @GeneratedValue(strategy = IDENTITY)
-//    val id: Long? = null
-
-
 }

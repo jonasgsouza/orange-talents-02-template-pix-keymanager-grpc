@@ -22,8 +22,8 @@ class ExceptionInterceptor(
             e.printStackTrace()
             context?.parameterValues?.get(1)?.let { possibleResponseObserver ->
                 if (possibleResponseObserver is StreamObserver<*>) {
-                    val status = exceptionHandlerResolver.resolve(e).handle(e)
-                    possibleResponseObserver.onError(status.asRuntimeException())
+                    val statusRuntimeException = exceptionHandlerResolver.resolve(e).handle(e)
+                    possibleResponseObserver.onError(statusRuntimeException)
                 }
             }
             null
