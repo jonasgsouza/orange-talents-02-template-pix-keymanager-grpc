@@ -2,12 +2,14 @@ package br.com.zup.edu.shared.validation
 
 import javax.validation.Constraint
 import javax.validation.Payload
+import javax.validation.ReportAsSingleViolation
 import kotlin.annotation.AnnotationRetention.RUNTIME
 import kotlin.annotation.AnnotationTarget.CLASS
 import kotlin.annotation.AnnotationTarget.TYPE
 import kotlin.reflect.KClass
 
 @MustBeDocumented
+@ReportAsSingleViolation
 @Constraint(validatedBy = [ValidPixKeyValidator::class])
 @Retention(RUNTIME)
 @Target(CLASS, TYPE)

@@ -15,17 +15,15 @@ class ConstraintViolationExceptionHandler : ExceptionHandler<ConstraintViolation
     override fun handle(exception: ConstraintViolationException): StatusRuntimeException {
         val status: StatusGoogle = StatusGoogle.newBuilder().run {
             code = Status.Code.FAILED_PRECONDITION.value()
-            message = exception.message
-            exception.constraintViolations.forEach { violation ->
-                addDetails(
-                    Any.pack(
-                        BadRequest.FieldViolation.newBuilder()
-                            .setField(violation.propertyPath.toString())
-                            .setDescription(violation.message)
-                            .build()
-                    )
-                )
+            message = "Invalid Arguments"
+            val details: List<BadRequest.FieldViolation> = exception.constraintViolations.map { violation ->
+                BadRequest.FieldViolation.newBuilder()
+                    .setField(violation.propertyPath.toString())
+                    .setDescription(violation.message)
+                    .build()
+
             }
+            addDetails(Any.pack(BadRequest.newBuilder().addAllFieldViolations(details).build()))
             build()
         }
         return StatusProto.toStatusRuntimeException(status)
